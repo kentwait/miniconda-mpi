@@ -13,9 +13,9 @@ RUN apt-get install -q -y ca-certificates \
 
 # Install anaconda 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://repo.continuum.io/miniconda/Miniconda-latest-Linux-x86_64.sh && \
-    /bin/bash /Miniconda-latest-Linux-x86_64.sh -b -p /opt/conda && \
-    rm /Miniconda-latest-Linux-x86_64.sh
+    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-3.19.0-Linux-x86.sh && \
+    /bin/bash /Miniconda3-3.19.0-Linux-x86.sh -b -p /opt/conda && \
+    rm /Miniconda3-3.19.0-Linux-x86.sh
 
 ENV PATH /opt/conda/bin:$PATH
 

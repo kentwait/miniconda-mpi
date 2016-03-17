@@ -13,9 +13,9 @@ RUN apt-get install -q -y ca-certificates \
 
 # Install anaconda 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    wget --quiet https://repo.continuum.io/miniconda/Miniconda3-3.19.0-Linux-x86.sh && \
-    /bin/bash /Miniconda3-3.19.0-Linux-x86.sh -b -p /opt/conda && \
-    rm /Miniconda3-3.19.0-Linux-x86.sh
+    wget --quiet http://repo.continuum.io/miniconda/Miniconda3-3.19.0-Linux-x86_64.sh && \
+    /bin/bash /Miniconda3-3.19.0-Linux-x86_64.sh -b -p /opt/conda && \
+    rm /Miniconda3-3.19.0-Linux-x86_64.sh
 
 ENV PATH /opt/conda/bin:$PATH
 
@@ -26,8 +26,7 @@ ENV LANG C.UTF-8
 # Install Python3 packages
 RUN conda install -q -y ipython \
                         jupyter
-RUN pip install -q simpy \
-                   mpi4py
+RUN pip install -q mpi4py  # MPI4py in conda is broken as of 2016/03/17
 
 # Create "docker" user
 RUN useradd --create-home --home-dir /home/docker --shell /bin/bash docker

@@ -18,6 +18,6 @@ Replace `<port>` with 8888 (default) or any unused port on the host machine.
 Replace `<directory>` with the directory where notebooks will be stored on the host machine.
 
 
-# Notes
+## Notes
 
-Because only Miniconda is included, this container is compact and ideal as a base for adding Python 3 packages as needed. If you would rather have the full Anaconda installation, please use [kentwait/anaconda-mpi][https://github.com/kentwait/anaconda-mpi] instead.
+Because only Miniconda is included, this container is compact and ideal as a base for adding Python 3 packages as needed. If you would rather have the full Anaconda installation, please use kentwait/anaconda-mpi[https://github.com/kentwait/anaconda-mpi] instead.

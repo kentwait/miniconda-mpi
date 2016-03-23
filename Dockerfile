@@ -7,6 +7,7 @@ RUN apt-get install -q -y ca-certificates \
                           libxext6 \
                           libsm6 \
                           libxrender1 \
+                          nano \
                           git \
                           mercurial \
                           subversion
@@ -32,9 +33,11 @@ ENV PATH /home/docker/conda/bin:$PATH
 ENV LANG C.UTF-8
 
 # Install additional Python3 packages
-RUN conda install -q -y ipython \
-                        jupyter
 RUN pip install -q mpi4py  # MPI4py in conda is broken as of 2016/03/17
+RUN conda install -q -y ipython \
+                        jupyter \
+                        ipyparallel
+RUN cd /home/docker && ipcluster nbextension enable
 
 # Allow notebook to communicate with outside world
 EXPOSE 8888
@@ -46,4 +49,4 @@ ENV USER=docker
 VOLUME /home/docker/notebooks
 WORKDIR /home/docker/notebooks
 
-CMD /home/docker/conda/bin/jupyter-notebook --no-browser --port 8888 --ip=0.0.0.0
+CMD /home/docker/conda/bin/jupyter-notebook --no-browser --port 8888 --ip=0.0.0.0 --config=/home/docker/jupyter_notebook_config.json
